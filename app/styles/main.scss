@@ -79,6 +79,12 @@ body {
     cursor: pointer;
 }
 
+.stat-card:hover {
+    padding:10px 20px;
+    cursor: pointer;
+    border-bottom: solid 3px $primary;
+}
+
 .stat-icon {
     font-size:3em;
 }

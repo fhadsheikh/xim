@@ -44,18 +44,35 @@
             <div class="ticket {{ticket.respondedBy}} panel panel-default" ng-repeat="ticket in tickets | filter:search" ng-hide="singleTicket">
                 <div class="row {{ticket.warning}}">
                     <div class="col-md-12">
-                        <div class="ticket-title" ng-click="openTicket(ticket.issueId)">#{{ticket.issueId}} - {{ticket.title}}</div>
+                        <div class="ticket-title" ng-click="openTicket(ticket.issueId)">#{{ticket.issueId}} - {{ticket.subject}}</div>
                     </div>
                 </div>
                 <div class="row ticket-details">
-                    <div class="col-md-2 ticket-detail right" ng-repeat="detail in ticket.details">
-                            <span class="ticket-detail-label">{{detail.label}}</span><br>
-                            <span class="ticket-detail-stat">{{detail.stat}}</span>
+                    <div class="col-md-2 ticket-detail right">
+                            <span class="ticket-detail-label">Status</span><br>
+                            <span class="ticket-detail-stat">{{ticket.status}}</span>
+                    </div>
+                    <div class="col-md-2 ticket-detail right">
+                            <span class="ticket-detail-label">Priority</span><br>
+                        <span class="ticket-detail-stat">{{ticket.priority}}</span>
+
+                    </div>
+                    <div class="col-md-2 ticket-detail right">
+                            <span class="ticket-detail-label">Assigned To</span><br>
+                        <span class="ticket-detail-stat">{{ticket.assignedTo}}</span>
+                    </div>
+                    <div class="col-md-4 ticket-detail right">
+                            <span class="ticket-detail-label">Client</span><br>
+                        <span class="ticket-detail-stat">{{ticket.client}}</span>
+                    </div>
+                    <div class="col-md-2 ticket-detail right">
+                            <span class="ticket-detail-label">Last Updated</span><br>
+                        <span class="ticket-detail-stat">{{ticket.lastUpdated}}</span>
                     </div>
                 </div>
             </div>
             <div class="panel panel-default" ng-show="singleTicket">
-              <div class="panel-heading"><i ng-click="backToList()" class="fa fa-arrow-left"></i></div>
+              <div ng-click="backToList()" class="panel-heading"><i  class="fa fa-arrow-left"></i></div>
               <div class="panel-body">
                 Panel content
               </div>
