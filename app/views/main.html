@@ -1,0 +1,114 @@
+<!-- HEADER -->
+<div class="row header">
+    <div class="col-md-8">
+        <div class="logo">XIM <i class="fa fa-umbrella "></i></div>
+    </div>
+    <div class="col-md-4">
+        <div class="right">
+            <form class="navbar-form" role="search" style="display:inline">
+                <div class="form-group">
+                  <input type="text" class="search" style="color:White;" ng-model="search" placeholder="Search">
+                </div>
+              </form>
+            <i class="fa fa-sign-out"></i></div>
+    </div>
+</div>
+<!-- HEADER END -->
+
+<!-- STATS -->
+<div class="row stats" ng-controller="CardsCtrl">
+    <div class="col-md-2" ng-repeat="stat in stats">
+        <div class="stat-card panel panel-default" ng-click="filterList(stat.label)">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-lg stat-icon">
+                      <i class="fa fa-circle fa-stack-2x" style="color:#5cc7b2"></i>
+                      <i class="fa {{stat.icon}} fa-stack-1x fa-inverse"></i>
+                    </span>
+                </div>
+                <div class="col-md-8 right">
+                    <div class="stat-number">{{stat.number}}</div>
+                    <div class="stat-label">{{stat.label}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- STATS END -->
+
+<!-- MAIN CONTENT -->
+<div class="row">
+    <!-- LEFT COLUMN - TICKETS -->
+    <div ng-controller="TicketsCtrl">
+        <div class="col-md-8" id="tickets" ng-scrollbars >
+            <div class="ticket {{ticket.respondedBy}} panel panel-default" ng-repeat="ticket in tickets | filter:search" ng-hide="singleTicket">
+                <div class="row {{ticket.warning}}">
+                    <div class="col-md-12">
+                        <div class="ticket-title" ng-click="openTicket(ticket.issueId)">#{{ticket.issueId}} - {{ticket.title}}</div>
+                    </div>
+                </div>
+                <div class="row ticket-details">
+                    <div class="col-md-2 ticket-detail right" ng-repeat="detail in ticket.details">
+                            <span class="ticket-detail-label">{{detail.label}}</span><br>
+                            <span class="ticket-detail-stat">{{detail.stat}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default" ng-show="singleTicket">
+              <div class="panel-heading"><i ng-click="backToList()" class="fa fa-arrow-left"></i></div>
+              <div class="panel-body">
+                Panel content
+              </div>
+            </div>
+        </div>    
+    </div>
+    <!-- LEFT COLUMN - TICKETS END -->
+    <!-- RIGHT COLUMN - TECH STATS & FEED -->
+    <div class="col-md-4" style="margin-top:20px">
+        <!-- TECH STATS -->
+        <div class="row" ng-controller="TechstatsCtrl">
+            <div class="col-md-12">
+                <div class="panel panel-default techstats">
+                    <div class="tech" ng-repeat="tech in techs | orderBy: '-Closed'" ng-click="filterList(tech.name)">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{tech.name}}
+                            </div>
+                            <div class="col-md-6 right">
+                                {{tech.Total}} open | <span class="techstats-closed">{{tech.Closed}} closed</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="progress progress-striped active" >
+                              <div class="progress-bar progress-bar-success" style="width: {{tech.PercentStaff}}%"></div>
+                              <div class="progress-bar progress-bar-warning" style="width: {{tech.PercentClient}}%"></div>
+                              <div class="progress-bar progress-bar-info" style="width: {{tech.PercentTech}}%"></div>
+                              <div class="progress-bar progress-bar-danger" style="width: {{tech.PercentNew}}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- TECH STATS END -->
+        <!-- FEED -->
+        <div class="row" ng-controller="FeedCtrl">
+            <div class="col-md-12" id="feed" ng-scrollbars>
+                <div class="panel panel-default" ng-repeat="f in feed | reverse">
+                    <div class="row feed" >
+                            <div class="col-md-9 feed-item">
+                                {{f.item}}
+                            </div>
+                            <div class="col-md-3 feed-time">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FEED END -->
+    </div>
+    <!-- RIGHT COLUMN - TECH STATS & FEED -->
+</div>
+<!-- MAIN CONTENT END -->

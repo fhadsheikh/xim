@@ -1,0 +1,200 @@
+$background: #F7F7F7;
+$primary: #5cc7b2;
+$secondary: #fff;
+
+// Priorities
+$warning-critical: #FF6666;
+$warning-unassigned: #53C174;
+$warning-expired: #2F2F2F;
+
+// Statuses
+$status-client: orange;
+$status-bytech: $primary;
+$status-fortech: #2DAAFF;
+$status-new: #FF6666;
+
+body {
+    padding: 0;
+    background-color: $background;
+}
+
+.right {
+    text-align:right;
+}
+
+.center {
+    text-align:center;
+}
+
+.header {
+    background-color:$primary;
+    color:white;
+    font-size:28px;
+    padding:25px 10px 10px 10px;
+    font-family:"Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    box-shadow: 0px 0px 9px #888888;
+}
+
+.logo {
+    font-family: 'Kaushan Script', cursive;
+}
+
+.search {
+        border-radius: 10px;
+    color: #F1F1F1;
+    background-color: #67C5B3;
+    border: solid 1px white;
+    font-size: 12pt;
+    vertical-align: top;
+    padding: 5px;
+    margin: 0px;
+    font-weight: lighter;
+}
+
+::-webkit-input-placeholder {
+   color: white;
+}
+
+::selection {
+  background: $primary; /* WebKit/Blink Browsers */
+    color:white;
+}
+::-moz-selection {
+  background: $primary; /* Gecko Browsers */
+    color:white;
+}
+
+
+/**************
+ * STAT CARDS */
+
+.stats {
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.stat-card {
+    padding:10px 20px;
+    cursor: pointer;
+}
+
+.stat-icon {
+    font-size:3em;
+}
+
+.stat-number {
+    font-size:60px;
+    font-weight:bold;
+    line-height:1
+}
+
+.stat-label {
+    font-size:15px;
+}
+
+/***************
+ * TICKET LIST */
+
+.ticket {
+    background-color:white;
+    margin:20px 0px;
+}
+
+.ticket-title{
+    font-size:16pt;
+    padding:10px 10px 10px 10px;
+}
+
+.ticket-labels{
+    padding:0px 10px 10px 10px;
+}
+
+.ticket-status{
+}
+
+.ticket-details{
+    border-top:solid 1px #DEDEDE;
+    padding:0px 20px;
+}
+
+.ticket-detail {
+    border-right:solid 1px #DEDEDE;
+    padding: 10px 10px 10px 0px;
+    line-height: 1;
+}
+.ticket-detail:last-of-type {
+    border:none;
+}
+
+.ticket-detail-label{
+    line-height:1.2;
+}
+
+.ticket-detail-stat{
+    font-size:12pt;
+}
+
+.ticket .critical{
+    background-color:$warning-critical;
+    color:white;
+}
+
+.ticket .unassigned{
+    background-color:$warning-unassigned;
+    color:white;
+}
+
+.ticket .expired{
+    background-color:$warning-expired;
+    color:white;
+}
+    
+.ticket-status-byclient{
+    border-left:solid 5px $status-client;
+}
+.ticket-status-bytech{
+    border-left:solid 5px $status-bytech;
+}
+.ticket-status-fortech{
+    border-left:solid 5px $status-fortech;
+}
+.ticket-status-new{
+    border-left:solid 5px $status-new;
+}
+
+/**************
+ * TECH STATS */
+
+.techstats{
+    padding:10px 10px 0px 10px;
+}
+
+.techstats-closed{
+    color:#C30A00;
+}
+
+.progress-bar-success{
+    background-color:$primary;
+}
+
+.tech{
+    cursor: pointer;
+}
+
+/********
+ * FEED */
+
+.feed{
+    padding:20px;
+}
+
+.feed-item{
+    font-size:15pt;
+}
+
+.feed-time{
+    text-align:right;
+}
+
+
