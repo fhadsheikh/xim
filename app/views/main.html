@@ -16,7 +16,7 @@
 <!-- HEADER END -->
 
 <!-- STATS -->
-<div class="row stats" ng-controller="CardsCtrl">
+<div class="row stats">
     <div class="col-md-2" ng-repeat="stat in stats">
         <div class="stat-card panel panel-default" ng-click="filterList(stat.label)">
             <div class="row">
@@ -39,12 +39,12 @@
 <!-- MAIN CONTENT -->
 <div class="row">
     <!-- LEFT COLUMN - TICKETS -->
-    <div ng-controller="TicketsCtrl">
+    <div>
         <div class="col-md-8" id="tickets" ng-scrollbars >
             <div class="ticket {{ticket.respondedBy}} panel panel-default" ng-repeat="ticket in tickets | filter:search" ng-hide="singleTicket">
                 <div class="row {{ticket.warning}}">
                     <div class="col-md-12">
-                        <div class="ticket-title" ng-click="openTicket(ticket.issueId)">#{{ticket.issueId}} - {{ticket.subject}}</div>
+                        <div class="ticket-title" ng-click="openTicket(ticket)">#{{ticket.issueId}} - {{ticket.subject | trim}}</div>
                     </div>
                 </div>
                 <div class="row ticket-details">
@@ -71,11 +71,65 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default" ng-show="singleTicket">
-              <div ng-click="backToList()" class="panel-heading"><i  class="fa fa-arrow-left"></i></div>
-              <div class="panel-body">
-                Panel content
-              </div>
+            <div ng-show="singleTicket">
+                <div  class="ticket panel panel-default {{ticket.respondedBy}}" ng-show="singleTicket">
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div ng-click="backToList()" class="ticket-title">#{{ticket.issueId}} - {{ticket.subject}}</div>
+                        </div>
+                        <div class="row ticket-details" style="padding:0px 30px">
+                            <div class="col-md-1 ticket-detail right">
+                                    <span class="ticket-detail-label">Status</span><br>
+                                    <span class="ticket-detail-stat">{{ticket.status}}</span>
+                            </div>
+                            <div class="col-md-1 ticket-detail right">
+                                    <span class="ticket-detail-label">Priority</span><br>
+                                <span class="ticket-detail-stat">{{ticket.priority}}</span>
+
+                            </div>
+                            <div class="col-md-2 ticket-detail right" style="cursor:pointer" ng-click="assignTo(ticket)">
+                                    <span class="ticket-detail-label">Assigned To</span><br>
+                                <span class="ticket-detail-stat">{{ticket.assignedTo}}</span>
+                            </div>
+                            <div class="col-md-4 ticket-detail right">
+                                    <span class="ticket-detail-label">Client</span><br>
+                                <span class="ticket-detail-stat">{{ticket.client}}</span>
+                            </div>
+                            <div class="col-md-2 ticket-detail right">
+                                    <span class="ticket-detail-label">Last Updated</span><br>
+                                <span class="ticket-detail-stat">{{ticket.lastUpdated}}</span>
+                            </div>
+                            <div class="col-md-2 ticket-detail right">
+                                    <span class="ticket-detail-label">Issue Date</span><br>
+                                <span class="ticket-detail-stat">{{ticket.lastUpdated}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="row ticket-response" style="border: solid 1px #5CC7B2;">
+                        <div class="col-md-2 ticket-author">
+                            <img src="http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-ponsy-deer.png" class="ticket-author-avatar" alt="Rounded Image">
+                            <br>
+                            Fhad
+                        </div>
+                        <div class="col-md-10 ticket-body">
+                            <p ng-bind-html="ticketDetails.Body"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default" ng-repeat="comment in comments">
+                    <div class="row ticket-response">
+                        <div class="col-md-2 ticket-author">
+                            <img src="http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-ponsy-deer.png" class="ticket-author-avatar" alt="Rounded Image">
+                            <br>
+                            {{comment.FirstName}}
+                        </div>
+                        <div class="col-md-10 ticket-body">
+                            <p ng-bind-html="comment.Body"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>    
     </div>
@@ -83,9 +137,9 @@
     <!-- RIGHT COLUMN - TECH STATS & FEED -->
     <div class="col-md-4" style="margin-top:20px">
         <!-- TECH STATS -->
-        <div class="row" ng-controller="TechstatsCtrl">
+        <div class="row" >
             <div class="col-md-12">
-                <div class="panel panel-default techstats">
+                <div class="panel panel-default techstats" ng-class="{'techstats-assigning': assigning == true}">
                     <div class="tech" ng-repeat="tech in techs | orderBy: '-Closed'" ng-click="filterList(tech.name)">
                         <div class="row">
                             <div class="col-md-6">

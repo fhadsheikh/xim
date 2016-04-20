@@ -110,6 +110,7 @@ body {
 .ticket-title{
     font-size:16pt;
     padding:10px 10px 10px 10px;
+    cursor: pointer;
 }
 
 .ticket-labels{
@@ -169,11 +170,47 @@ body {
     border-left:solid 5px $status-new;
 }
 
+/* SINGLE TICKET */
+
+.ticket-response {
+    
+    background-color:#F7F7F7;
+}
+.ticket-author {
+    text-align:center;
+}
+
+.ticket-author-avatar{
+    padding: 20px 0px;
+    width: 80px;
+    border-radius: 40px;
+}
+
+.ticket-body{
+    font-size: 12pt;
+    border-left:solid 1px #E8E8E8;
+    background-color:white;
+    min-height:150px;
+}
+
+.ticket-body p{
+    padding: 30px;
+}
+
+.ticket-body img{
+    width: 200px;
+}
+
+
 /**************
  * TECH STATS */
 
 .techstats{
     padding:10px 10px 0px 10px;
+}
+
+.techstats-assigning{
+    border:solid 1px #FFA0A0;
 }
 
 .techstats-closed{
@@ -196,7 +233,7 @@ body {
 }
 
 .feed-item{
-    font-size:15pt;
+    font-size:12pt;
 }
 
 .feed-time{
